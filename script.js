@@ -56,7 +56,7 @@ function displayGameResult(playerScore, computerScore){
         console.log(`You win the game! Final Score: ${playerScore}-${computerScore}`);
     }
     else if (playerScore < computerScore) {
-        console.log(`You win the lose! Final Score: ${playerScore}-${computerScore}`);
+        console.log(`You lose the game! Final Score: ${playerScore}-${computerScore}`);
     }
     else {
         console.log(`Draw Game! Final Score: ${playerScore}-${computerScore}`);
