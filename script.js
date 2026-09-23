@@ -1,12 +1,16 @@
 function getComputerChoice() {
-    let choice = (Math.random() * 100);
+    let choice = (Math.floor(Math.random() * 3) + 1);
 
-    if (choice <= 33.33333333333333) {
-        choice = "rock";
-    } else if (choice > 33.33333333333333 && choice <= 66.66666666666666) {
-        choice = "paper";
-    } else {
-        choice = "scissors"
+    switch(choice) {
+        case 1:
+            choice = "rock";
+            break;
+        case 2:
+            choice = "paper";
+            break;
+        case 3:
+            choice = "scissors";
+            break;
     }
 
     return choice;
