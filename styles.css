@@ -1,0 +1,73 @@
+
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+.instruction p {
+    color: rgb(147, 147, 147);
+    font-size: 1.5rem;
+}
+
+section.game{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: clamp(30rem, 50vw, 50rem);
+    border-radius: 1em;
+    background-color: rgb(219, 218, 218);
+}
+
+.hud {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(198, 198, 198);
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    width: 100%;
+    padding: 0 1rem; 
+}
+
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player .choice {
+    margin-top: 0;
+    font-size: 2rem;
+}
+
+.options {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 1rem 2rem;
+}
+
+.option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+}
+
+.option:hover {
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
+}

@@ -4,6 +4,7 @@ function getComputerChoice() {
     switch(choice) {
         case 1:
             choice = "rock";
+
             break;
         case 2:
             choice = "paper";
@@ -16,28 +17,38 @@ function getComputerChoice() {
     return choice;
 }
 
+function displayResult(humanChoice, computerChoice, result) {
+    let resultText = "";
+    let humanChoiceEmoji = document.querySelector(".user .choice");
+    let computerChoiceEmoji = document.querySelector(".cpu .choice");
 
-function getHumanChoice() {
-    let choice = prompt("Please enter 1 (rock), 2 (paper) or 3 (scissors): ");
-
-    switch(choice) {
-        case "1":
-            choice = "rock";
+    switch(humanChoice) {
+        case "rock":
+            humanChoiceEmoji.textContent = rockEmoji;
             break;
-        case "2":
-            choice = "paper";
+        case "paper":
+            humanChoiceEmoji.textContent = paperEmoji;
             break;
-        case "3":
-            choice = "scissors";
+        case "scissors":
+            humanChoiceEmoji.textContent = scissorsEmoji;
             break;
     }
 
-    return choice;
-}
+    switch(computerChoice) {
+        case "rock":
+            computerChoiceEmoji.textContent = rockEmoji;
+            break;
+        case "paper":
+            computerChoiceEmoji.textContent = paperEmoji;
+            break;
+        case "scissors":
+            computerChoiceEmoji.textContent = scissorsEmoji;
+            break;
+    }
 
+    switch(computerChoice) {
 
-function displayResult(humanChoice, computerChoice, result) {
-    let resultText = "";
+    }
 
     switch(result) {
         case "win":
@@ -50,21 +61,11 @@ function displayResult(humanChoice, computerChoice, result) {
             resultText = `Draw!, ${humanChoice} equals ${computerChoice}`;
             break;
     }
-
     console.log(`YOU: ${humanChoice}, CPU: ${computerChoice}\n${resultText}`);
 }
 
-
-function displayGameResult(playerScore, computerScore){
-    if (playerScore > computerScore) {
-        console.log(`You win the game! Final Score: ${playerScore}-${computerScore}`);
-    }
-    else if (playerScore < computerScore) {
-        console.log(`You lose the game! Final Score: ${playerScore}-${computerScore}`);
-    }
-    else {
-        console.log(`Draw Game! Final Score: ${playerScore}-${computerScore}`);
-    }
+function displayScore() {
+    console.log(`Total score, you: ${playerScore}, cpu: ${computerScore}`);
 }
 
 
@@ -123,27 +124,30 @@ function playRound(humanChoice, computerChoice) {
             }
             break;
     }
-    return humanResult;
-}
-
-
-function playGame() {
-    let playerScore = "0";
-    let computerScore = "0";
     
-    for (i = 0; i < 5; i++) {
-        let humanChoice = getHumanChoice();
-        let computerChoice = getComputerChoice();
-        let result = playRound(humanChoice, computerChoice);
-        if (result === "win"){
-            playerScore++;
-        }
-        else if (result === "lose"){
-            computerScore++;
-        }
+    if (humanResult === "win") {
+        playerScore++;
     }
-
-    displayGameResult(playerScore, computerScore);
+    else if (humanResult === "lose") {
+        computerScore++;
+    }
+    
+    displayScore();
 }
 
-playGame();
+
+const rockEmoji = "✊";
+const paperEmoji = "🖐";
+const scissorsEmoji = "✌";
+let playerScore = 0;
+let computerScore = 0;
+
+const options = document.querySelector(".options");
+
+options.addEventListener("click", (e) => {
+    if (e.target.classList.contains("option")){
+        let humanChoice = e.target.textContent;
+        let computerChoice = getComputerChoice();
+        playRound(humanChoice, computerChoice);
+    }
+})
