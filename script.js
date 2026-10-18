@@ -4,7 +4,6 @@ function getComputerChoice() {
     switch(choice) {
         case 1:
             choice = "rock";
-
             break;
         case 2:
             choice = "paper";
@@ -22,6 +21,7 @@ function displayResult(humanChoice, computerChoice, result) {
     let humanChoiceEmoji = document.querySelector(".user .choice");
     let computerChoiceEmoji = document.querySelector(".cpu .choice");
 
+    // Update Emojis
     switch(humanChoice) {
         case "rock":
             humanChoiceEmoji.textContent = rockEmoji;
@@ -45,26 +45,35 @@ function displayResult(humanChoice, computerChoice, result) {
             computerChoiceEmoji.textContent = scissorsEmoji;
             break;
     }
-
-    switch(computerChoice) {
-
-    }
-
+    
+    // Update Game Text
     switch(result) {
         case "win":
-            resultText = `You win!, ${humanChoice} beats ${computerChoice}`;
+            resultText = `You win! ${humanChoice} beats ${computerChoice}`;
             break;
         case "lose":
-            resultText = `You lose!, ${computerChoice} beats ${humanChoice}`;
+            resultText = `You lose! ${computerChoice} beats ${humanChoice}`;
             break;
         case "draw":
-            resultText = `Draw!, ${humanChoice} equals ${computerChoice}`;
+            resultText = `Draw! ${humanChoice} equals ${computerChoice}`;
             break;
     }
+
+    let gameText = document.querySelector(".game-text p");
+    gameText.textContent = resultText;
+
+    // Legacy Console Logging
     console.log(`YOU: ${humanChoice}, CPU: ${computerChoice}\n${resultText}`);
 }
 
 function displayScore() {
+    let cpuScr = document.querySelector(".cpu .score");
+    let userScr = document.querySelector(".user .score");
+
+    cpuScr.textContent = computerScore;
+    userScr.textContent = playerScore;
+
+    // Legacy Console Logging
     console.log(`Total score, you: ${playerScore}, cpu: ${computerScore}`);
 }
 
@@ -125,6 +134,7 @@ function playRound(humanChoice, computerChoice) {
             break;
     }
     
+    // Update Scores
     if (humanResult === "win") {
         playerScore++;
     }
@@ -133,21 +143,44 @@ function playRound(humanChoice, computerChoice) {
     }
     
     displayScore();
+
+    checkWinner();
 }
 
+function checkWinner() {
+    let text = document.querySelector(".modal-box .winner-text");
+    let score = document.querySelector(".modal-box .final-score");
+    let modal = document.querySelector(".modal-overlay");
+    if (playerScore === 5 ) {
+        modal.classList.add("is-active");
+        text.textContent = "You won the game!";
+        score.textContent = `Final Score: ${playerScore} - ${computerScore}`;
+    }
+    else if (computerScore === 5) {
+        modal.classList.add("is-active");
+        text.textContent = "You lost the game.";
+        score.textContent = `Final Score: ${playerScore} - ${computerScore}`;
+    }
+}
 
 const rockEmoji = "✊";
 const paperEmoji = "🖐";
 const scissorsEmoji = "✌";
+const options = document.querySelector(".options");
+const playAgain = document.querySelector(".modal-box");
 let playerScore = 0;
 let computerScore = 0;
-
-const options = document.querySelector(".options");
 
 options.addEventListener("click", (e) => {
     if (e.target.classList.contains("option")){
         let humanChoice = e.target.textContent;
         let computerChoice = getComputerChoice();
         playRound(humanChoice, computerChoice);
+    }
+})
+
+playAgain.addEventListener("click", (e) => {
+    if (e.target.classList.contains("play-again")) {
+        location.reload();
     }
 })

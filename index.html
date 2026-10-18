@@ -11,18 +11,18 @@
     <header>
         <h1>Rock, Paper, Scissors, SHOOT!</h1>
     </header>
-    <section class="instruction">
+    <section class="game-text">
         <p>First to 5 points wins!</p>
     </section>
     <section class="game">
         <div class="hud">
             <div class="player user">
                 <h2>YOU: <span class="score">0</span></h2>
-                <p class="choice">&#128400;</p>  
+                <p class="choice">👤</p>  
             </div>
              <div class="player cpu">
                 <h2>CPU: <span class="score">0</span></h2>
-                <p class="choice">&#128400;</p>   
+                <p class="choice">🤖</p>   
              </div>
         </div>
         <div class="options">
@@ -31,5 +31,12 @@
             <div class="option">Scissors</div>
         </div>
     </section>
+    <div class="modal-overlay">
+        <div class="modal-box">
+            <p class="winner-text"></p>
+            <p class="final-score"></p>
+            <button class="play-again">Play again</button>
+        </div>
+    </div>
 </body>
 </html>
